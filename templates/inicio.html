@@ -1,0 +1,15 @@
+{% extends "base_template.html" %}
+{% block content %}
+        <title>Sistema de Registro Educativo</title>
+        <link rel="stylesheet" href="/static/css/estilos.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+        <h1>Bienvenido al sistema de registro de empleados</h1>
+        <h3>Seleccione una opción</h3>
+        <ul>
+            <li> <a href = "{{ url_for('registroDeEntrada') }}"> Registrar su Horario de entrada </a></li><br>
+            <li> <a href = "{{ url_for('registroDeSalida') }}"> Registrar su Horario de salida </a></li><br>
+            <li> <a href = "{{ url_for('consultarRegistro') }}"> Consultar registros </a></li><br>
+            <li> <a href = "{{ url_for('generarInforme') }}"> Generar Informe General </a></li><br>
+        </ul>
+{% endblock %}

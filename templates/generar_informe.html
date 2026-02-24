@@ -1,0 +1,10 @@
+{% extends "base_template.html" %}
+{% block content %}
+<a href="{{ url_for('inicio') }}" class="btn btn-volver">Volver al inicio</a>
+<h1>Verificación del Administrativo</h1>
+<form method="POST">
+    Legajo: <input type="text" name="legajo"><br>
+    Últimos 4 del DNI: <input type="text" name="dni4"><br>
+    <input type="submit" value="Consultar">
+</form>
+{% endblock %}

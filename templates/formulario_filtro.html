@@ -1,0 +1,30 @@
+{% extends "base_template.html" %}
+{% block content %}
+<a href="{{ url_for('inicio') }}" class="btn btn-volver">Volver al inicio</a>
+<h1>Filtros para el Informe</h1>
+<p>Administrativo: {{trabajador.apellido}}, {{trabajador.nombre}}</p>
+<form method="POST" action="/ver_informe">
+    <input type="hidden" name="legajo" value="{{ trabajador.legajo }}">
+    <input type="hidden" name="dni4" value="{{ trabajador.dni[-4:] }}">
+    Fecha inicio: <input type="date" name="fechainicio" required><br><br>
+    Fecha fin: <input type="date" name="fechafin" required><br><br>
+
+    Función:
+    <select name="funcion" required>
+        <option value="todas">Todas</option>
+        <option value="DO">Docente</option>
+        <option value="AD">Administrativo</option>
+        <option value="TE">Técnico</option>
+    </select><br><br>
+
+    Dependencia:
+    <select name="dependencia" required>
+        <option value="todas">Todas</option>
+        <option value="D01">Edificio Central</option>
+        <option value="D02">Talleres</option>
+        <option value="D03">Centro Deportivo</option>
+    </select><br><br>
+
+    <input type="submit" value="Generar Informe">
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base_template.html" %}
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<a href="{{ url_for('inicio') }}" class="btn btn-volver">Volver al inicio</a>
+<h1>Registrar Entrada</h1>
+<form method="post" action="/entrada">
+  Legajo: <input type="text" name="legajo" required><br>
+  Últimos 4 del DNI: <input type="text" name="dni4" required maxlength="4"><br>
+  Dependencia:
+  <select name="dependencia" required>
+    <option value="D01">Edificio Central</option>
+    <option value="D02">Talleres</option>
+    <option value="D03">Centro Deportivo</option>
+  </select><br>
+  <input type="submit" value="Registrar Entrada">
+</form>
+{% endblock %}

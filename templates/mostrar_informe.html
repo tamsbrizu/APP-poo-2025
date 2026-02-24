@@ -1,0 +1,27 @@
+{% extends "base_template.html" %}
+{% block content %}
+<a href="{{ url_for('inicio') }}" class="btn btn-volver">Volver al inicio</a>
+<h1>Informe general</h1>
+<table border="1">
+  <tr>
+    <th>Apellido y Nombre</th>
+    <th>Función</th>
+    <th>Fecha</th>
+    <th>Entrada</th>
+    <th>Salida</th>
+    <th>Dependencia</th>
+    <th>Horas Trabajadas</th>
+  </tr>
+  {% for reg in registros %}
+    <tr>
+      <td>{{ reg.trabajador.apellido }}, {{ reg.trabajador.nombre }}</td>
+      <td>{{ reg.trabajador.funcion }}</td>
+      <td>{{ reg.fecha.strftime('%d/%m/%Y') }}</td>
+      <td>{{ reg.horaentrada }}</td>
+      <td>{{ reg.horasalida or '---' }}</td>
+      <td>{{ reg.dependencia }}</td>
+      <td>{{ reg.horas_trabajadas }}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

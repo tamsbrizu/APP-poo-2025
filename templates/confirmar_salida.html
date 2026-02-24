@@ -1,0 +1,44 @@
+{% extends "base_template.html" %}
+{% block content %}
+<a href="{{ url_for('inicio') }}" class="btn btn-volver">Volver al inicio</a>
+<h1>Confirmación de Salida</h1>
+    <!-- Solo mostrar si tenemos los datos de entrada -->
+    {% if fecha_entrada and hora_entrada and dependencia_entrada %}
+    <div class="info-entrada">
+        <h3>📝 Tu entrada registrada hoy:</h3>
+        <div class="dato-entrada"><strong>Legajo:</strong> {{ legajo }}</div>
+        <div class="dato-entrada"><strong>Fecha:</strong> {{ fecha_entrada.strftime('%d/%m/%Y') }}</div>
+        <div class="dato-entrada"><strong>Hora de entrada:</strong> {{ hora_entrada.strftime('%H:%M:%S') }}</div>
+        <div class="dato-entrada"><strong>Dependencia de entrada:</strong> 
+            {% if dependencia_entrada == 'D01' %}
+                Edificio Central
+            {% elif dependencia_entrada == 'D02' %}
+                Talleres
+            {% elif dependencia_entrada == 'D03' %}
+                Centro Deportivo
+            {% else %}
+                {{ dependencia_entrada }}
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    <form action="/confirmarDependencia" method="POST" style="display:inline;">
+            <p><strong>Seleccione la dependencia de salida:</strong></p>
+        <input type="hidden" name="legajo" value="{{ legajo }}">
+        <input type="hidden" name="dni4" value="{{ dni4 }}">
+        <input type="hidden" name="confirmar" value="si">
+
+        <label for="dependencia">Dependencia:</label>
+        <select name="dependencia" id="dependencia" required>
+            <option value="D01">Edificio Central</option>
+            <option value="D02">Talleres</option>
+            <option value="D03">Centro Deportivo</option>
+        </select>
+
+        <button type="submit">✓ Confirmar salida</button>
+    </form>
+
+{% endblock %}
+
+ 

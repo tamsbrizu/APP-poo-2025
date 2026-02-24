@@ -1,0 +1,34 @@
+{% extends "base_template.html" %}
+{% block content %}
+    <meta charset="UTF-8">
+    <title>Registros Horarios</title>
+    <a href="{{ url_for('inicio') }}" class="btn btn-volver">Volver al inicio</a>
+    <h1>Registros de: {{ trabajador.nombre }} {{ trabajador.apellido }}</h1>
+    <p>Desde: {{ fecha_inicio }} </p> <p>Hasta: {{ fecha_fin }} </p>
+
+    {% if registros %}
+        <table border="1" cellpadding="5" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora Entrada</th>
+                    <th>Hora Salida</th>
+                    <th>Dependencia</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reg in registros %}
+                <tr>
+                    <td>{{ reg.fecha.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ reg.horaentrada.strftime('%H:%M:%S') if reg.horaentrada else '-' }}</td>
+                    <td>{{ reg.horasalida.strftime('%H:%M:%S') if reg.horasalida else '-' }}</td>
+                    <td>{{ reg.dependencia or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No se encontraron registros en el período indicado.</p>
+    {% endif %}
+
+{% endblock %}

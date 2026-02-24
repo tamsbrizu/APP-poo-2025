@@ -1,0 +1,17 @@
+<!-- templates/registrar_salida.html -->
+{% extends "base_template.html" %}
+{% block content %}
+<a href="{{ url_for('inicio') }}" class="btn btn-volver">Volver al inicio</a>
+    <meta charset="UTF-8">
+    <title>Registrar Salida</title>
+    <h1>Registro de Salida</h1>
+    <form action="/salida" method="POST">
+        <label for="legajo">Legajo:</label>
+        <input type="text" name="legajo" required><br><br>
+
+        <label for="dni4">Últimos 4 dígitos del DNI:</label>
+        <input type="text" name="dni4" required maxlength="4"><br><br>
+
+        <button type="submit">Registrar Salida</button>
+    </form>
+{% endblock %}
